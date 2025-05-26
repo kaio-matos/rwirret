@@ -1,0 +1,71 @@
+[package]
+name = "Rwirret"
+version = "0.1.0"
+authors = ["Kaio Matos <kaio_matos22@hotmail.com>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.98"
+async-trait = { version = "0.1.88", optional = true }
+axum = { version = "0.7.0", optional = true }
+axum_session = { version = "0.12.1", optional = true }
+axum_session_auth = { version = "0.12.1", features = [
+  "sqlite-rustls",
+], optional = true }
+# axum_session_sqlx = { version = "0.5.0", features = [
+#   "sqlite",
+# ], optional = true }
+dioxus = { version = "0.6.0", features = ["router", "fullstack"] }
+dioxus-cli-config = { version = "0.6.3", optional = true }
+http = { version = "1.3.1", optional = true }
+serde = "1.0.219"
+sqlx = { version = "0.7.0", features = [
+  "macros",
+  "migrate",
+  "postgres",
+  "sqlite",
+  "_unstable-all-types",
+  "tls-native-tls",
+  "runtime-tokio",
+], optional = true }
+tokio = { version = "1.45.1", optional = true }
+tower = { version = "0.5.2", optional = true }
+tower-http = { version = "0.6.4", optional = true }
+
+
+[features]
+default = []
+server = [
+  "dioxus/server",
+  "dep:dioxus-cli-config",
+  "dep:axum",
+  "dep:tokio",
+  "dep:tower-http",
+  "dep:async-trait",
+  "dep:sqlx",
+  "dep:axum_session",
+  "dep:axum_session_auth",
+  # "dep:axum_session_sqlx",
+  "dep:http",
+  "dep:tower",
+]
+# The feature that are only required for the web = ["dioxus/web"] build target should be optional and only enabled in the web = ["dioxus/web"] feature
+web = ["dioxus/web"]
+# The feature that are only required for the desktop = ["dioxus/desktop"] build target should be optional and only enabled in the desktop = ["dioxus/desktop"] feature
+desktop = ["dioxus/desktop"]
+# The feature that are only required for the mobile = ["dioxus/mobile"] build target should be optional and only enabled in the mobile = ["dioxus/mobile"] feature
+mobile = ["dioxus/mobile"]
+
+[profile]
+
+[profile.wasm-dev]
+inherits = "dev"
+opt-level = 1
+
+[profile.server-dev]
+inherits = "dev"
+
+[profile.android-dev]
+inherits = "dev"
