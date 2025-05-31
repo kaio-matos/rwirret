@@ -21,6 +21,7 @@ pub fn Button(props: ButtonProps) -> Element {
     }
 }
 
+#[allow(dead_code)]
 #[derive(PartialEq, Clone)]
 pub enum ButtonTheme {
     Default,

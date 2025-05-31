@@ -26,6 +26,7 @@ pub fn Input(props: InputProps) -> Element {
     }
 }
 
+#[allow(dead_code)]
 #[derive(PartialEq, Clone)]
 pub enum InputType {
     Button,

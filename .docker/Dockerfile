@@ -11,8 +11,7 @@ RUN curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v$TA
   && mv tailwindcss-linux-x64 /bin/tailwindcss
 
 ###
-
-RUN cargo install cargo-chef dioxus-cli
+RUN cargo install cargo-chef dioxus-cli sea-orm-cli && rustup component add rustfmt
 WORKDIR /usr/src/app
 
 COPY . .
